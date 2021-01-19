@@ -1,6 +1,8 @@
 import tweepy
+import csv
+import random
 
-# Make an extremely basic tweet, based on https://towardsdatascience.com/building-a-twitter-bot-with-python-89959ef2607f
+# authentication based on https://towardsdatascience.com/building-a-twitter-bot-with-python-89959ef2607f
 # Note: actually keys will be different from code on GitHub to protect the Twitter account's privacy
 # Authenticate to Twitter
 auth = tweepy.OAuthHandler("j61yE6eUNZsVtNM2RKP3yPcr5", 
@@ -10,7 +12,49 @@ auth.set_access_token("1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p",
 
 api = tweepy.API(auth)
 
-api.update_status('Hello there')
+characters = ['obi', 'anakin']
+
+char1 = random.randint(0, len(characters)-1)
+char2 = char1
+
+while char2 == char1:
+	char2 = random.randint(0, len(characters)-1)
+
+tweet = ''
+
+# read csv, from https://www.programiz.com/python-programming/reading-csv-files
+firstLines = []
+with open(characters[char1]+'_start.csv', 'r') as file:
+	reader = csv.reader(file)
+	for row in reader:
+		firstLines.append(row)
+
+tweet += firstLines[0][0] + ': '
+chosenLineIndex = random.randint(1, len(firstLines)-1)
+tweet += firstLines[chosenLineIndex][0] + '\n\n'  # the T/F part will be handled later
+
+midLines = []
+with open(characters[char2]+'_response.csv', 'r') as file:
+	reader = csv.reader(file)
+	for row in reader:
+		midLines.append(row)
+
+tweet += midLines[0][0] + ': '
+chosenLineIndex = random.randint(1, len(midLines)-1)
+tweet += midLines[chosenLineIndex][0] + '\n\n'
+
+lastLines = []
+with open(characters[char1]+'_response.csv', 'r') as file:
+	reader = csv.reader(file)
+	for row in reader:
+		lastLines.append(row)
+
+tweet += lastLines[0][0] + ': '
+chosenLineIndex = random.randint(1, len(lastLines)-1)
+tweet += lastLines[chosenLineIndex][0]
+print(tweet)
+
+api.update_status(tweet)
 
 # API key: j61yE6eUNZsVtNM2RKP3yPcr5
 # API key secret: sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY
