@@ -12,7 +12,8 @@ auth.set_access_token("1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p",
 
 api = tweepy.API(auth)
 
-characters = ['obi', 'anakin']
+characters = ['obi', 'anakin', 'palp']
+fullNames = ['Obi-Wan', 'Anakin', 'Palpatine']
 
 char1 = random.randint(0, len(characters)-1)
 char2 = char1
@@ -24,37 +25,37 @@ tweet = ''
 
 # read csv, from https://www.programiz.com/python-programming/reading-csv-files
 firstLines = []
-with open(characters[char1]+'_start.csv', 'r') as file:
+with open('quotes/'+characters[char1]+'_start.csv', 'r') as file:
 	reader = csv.reader(file)
 	for row in reader:
 		firstLines.append(row)
 
-tweet += firstLines[0][0] + ': '
-chosenLineIndex = random.randint(1, len(firstLines)-1)
+tweet += fullNames[char1] + ': '
+chosenLineIndex = random.randint(0, len(firstLines)-1)
 tweet += firstLines[chosenLineIndex][0] + '\n\n'  # the T/F part will be handled later
 
 midLines = []
-with open(characters[char2]+'_response.csv', 'r') as file:
+with open('quotes/'+characters[char2]+'_response.csv', 'r') as file:
 	reader = csv.reader(file)
 	for row in reader:
 		midLines.append(row)
 
-tweet += midLines[0][0] + ': '
-chosenLineIndex = random.randint(1, len(midLines)-1)
+tweet += fullNames[char2] + ': '
+chosenLineIndex = random.randint(0, len(midLines)-1)
 tweet += midLines[chosenLineIndex][0] + '\n\n'
 
 lastLines = []
-with open(characters[char1]+'_response.csv', 'r') as file:
+with open('quotes/'+characters[char1]+'_response.csv', 'r') as file:
 	reader = csv.reader(file)
 	for row in reader:
 		lastLines.append(row)
 
-tweet += lastLines[0][0] + ': '
-chosenLineIndex = random.randint(1, len(lastLines)-1)
+tweet += fullNames[char1] + ': '
+chosenLineIndex = random.randint(0, len(lastLines)-1)
 tweet += lastLines[chosenLineIndex][0]
 print(tweet)
 
-api.update_status(tweet)
+#api.update_status(tweet)
 
 # API key: j61yE6eUNZsVtNM2RKP3yPcr5
 # API key secret: sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY
