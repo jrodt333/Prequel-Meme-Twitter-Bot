@@ -12,8 +12,8 @@ auth.set_access_token("1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p",
 
 api = tweepy.API(auth)
 
-characters = ['obi', 'anakin', 'palp']
-fullNames = ['Obi-Wan', 'Anakin', 'Palpatine']
+characters = ['obi', 'anakin', 'palp', 'grievous', 'mace']
+fullNames = ['Obi-Wan', 'Anakin', 'Palpatine', 'General Grievous', 'Mace Windu']
 
 char1 = random.randint(0, len(characters)-1)
 char2 = char1
