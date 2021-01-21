@@ -55,7 +55,7 @@ chosenLineIndex = random.randint(0, len(lastLines)-1)
 tweet += lastLines[chosenLineIndex][0]
 print(tweet)
 
-#api.update_status(tweet)
+api.update_status(tweet)
 
 # API key: j61yE6eUNZsVtNM2RKP3yPcr5
 # API key secret: sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY
