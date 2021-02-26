@@ -1,6 +1,7 @@
 import tweepy
 import csv
 import random
+import re
 
 # authentication based on https://towardsdatascience.com/building-a-twitter-bot-with-python-89959ef2607f
 # Note: actually keys will be different from code on GitHub to protect the Twitter account's privacy
@@ -32,6 +33,8 @@ with open('quotes/'+characters[char1]+'_start.csv', 'r') as file:
 
 tweet += fullNames[char1] + ': '
 chosenLineIndex = random.randint(0, len(firstLines)-1)
+#if firstLines[chosenLineIndex][1] == 'TRUE':
+firstLines[chosenLineIndex][0] = re.sub(r'%NAME%', fullNames[char2], firstLines[chosenLineIndex][0])
 tweet += firstLines[chosenLineIndex][0] + '\n\n'  # the T/F part will be handled later
 
 midLines = []
@@ -42,6 +45,7 @@ with open('quotes/'+characters[char2]+'_response.csv', 'r') as file:
 
 tweet += fullNames[char2] + ': '
 chosenLineIndex = random.randint(0, len(midLines)-1)
+midLines[chosenLineIndex][0] = re.sub(r'%NAME%', fullNames[char1], midLines[chosenLineIndex][0])
 tweet += midLines[chosenLineIndex][0] + '\n\n'
 
 lastLines = []
@@ -52,10 +56,11 @@ with open('quotes/'+characters[char1]+'_response.csv', 'r') as file:
 
 tweet += fullNames[char1] + ': '
 chosenLineIndex = random.randint(0, len(lastLines)-1)
+lastLines[chosenLineIndex][0] = re.sub(r'%NAME%', fullNames[char2], lastLines[chosenLineIndex][0])
 tweet += lastLines[chosenLineIndex][0]
 print(tweet)
 
-api.update_status(tweet)
+#api.update_status(tweet)
 
 # API key: j61yE6eUNZsVtNM2RKP3yPcr5
 # API key secret: sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY
