@@ -33,9 +33,8 @@ with open('quotes/'+characters[char1]+'_start.csv', 'r') as file:
 
 tweet += fullNames[char1] + ': '
 chosenLineIndex = random.randint(0, len(firstLines)-1)
-#if firstLines[chosenLineIndex][1] == 'TRUE':
 firstLines[chosenLineIndex][0] = re.sub(r'%NAME%', fullNames[char2], firstLines[chosenLineIndex][0])
-tweet += firstLines[chosenLineIndex][0] + '\n\n'  # the T/F part will be handled later
+tweet += firstLines[chosenLineIndex][0] + '\n\n'
 
 midLines = []
 with open('quotes/'+characters[char2]+'_response.csv', 'r') as file:
