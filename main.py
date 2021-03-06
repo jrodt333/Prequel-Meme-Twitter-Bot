@@ -8,9 +8,9 @@ def main():
 	# Note: actually keys will be different from code on GitHub to protect the Twitter account's privacy
 	# Authenticate to Twitter
 	auth = tweepy.OAuthHandler("j61yE6eUNZsVtNM2RKP3yPcr5", 
-	    "sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY")
+		"sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY")
 	auth.set_access_token("1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p", 
-	    "qKDZpiIVKZkzplxRjCOgPid6ylPOAHGkCzonQuSYeDLqH")
+		"qKDZpiIVKZkzplxRjCOgPid6ylPOAHGkCzonQuSYeDLqH")
 
 	api = tweepy.API(auth)
 
@@ -51,7 +51,7 @@ def main():
 	lastLines = []
 	with open('quotes/'+characters[char1]+'_response.csv', 'r') as file:
 		reader = csv.reader(file)
-        for row in reader:
+		for row in reader:
 			lastLines.append(row)
 
 	tweet += fullNames[char1] + ': '
