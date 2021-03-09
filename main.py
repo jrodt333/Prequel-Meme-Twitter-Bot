@@ -2,15 +2,17 @@ import tweepy
 import csv
 import random
 import re
+import os
 
 def main():
 	# authentication based on https://towardsdatascience.com/building-a-twitter-bot-with-python-89959ef2607f
-	# Note: actually keys will be different from code on GitHub to protect the Twitter account's privacy
 	# Authenticate to Twitter
-	auth = tweepy.OAuthHandler("j61yE6eUNZsVtNM2RKP3yPcr5", 
-		"sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY")
-	auth.set_access_token("1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p", 
-		"qKDZpiIVKZkzplxRjCOgPid6ylPOAHGkCzonQuSYeDLqH")
+	api_key = os.environ['api_key']
+	api_key_secret = os.environ['api_key_secret']
+	access_token = os.environ['access_token']
+	access_token_secret = os.environ['access_token_secret']
+	auth = tweepy.OAuthHandler(api_key, api_key_secret)
+	auth.set_access_token(access_token, access_token_secret)
 
 	api = tweepy.API(auth)
 
@@ -64,9 +66,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-# API key: j61yE6eUNZsVtNM2RKP3yPcr5
-# API key secret: sYHRbVuYNdnPI3g34HygHh0gk604RfGjCdIpEcTOh08zNIg9dY
-# Access token: 1308162909965443073-ZIAawyZNY97l5ZxArCYaooVXCwVH7p
-# Access token secret: qKDZpiIVKZkzplxRjCOgPid6ylPOAHGkCzonQuSYeDLqH
-# Bearer token: AAAAAAAAAAAAAAAAAAAAACunLwEAAAAAG3Q2Fz83LpsSeHGTr1YlBPI%2Bvl8%3DV5k949LH1CQZiE2dGvBk0GmpZmSpK36Dw2b1xZ8IhzJH3pcOr8
